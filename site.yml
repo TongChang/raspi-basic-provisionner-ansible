@@ -1,0 +1,13 @@
+# vim: set ft=ansible:
+---
+- hosts: pies
+
+  roles:
+  - apt
+  - setup_pi
+  - git
+  - vim
+  - node.js
+  - bash
+
+...

@@ -1,0 +1,7 @@
+- name: rewrite .bashrc for vi mode
+  lineinfile: dest='{{ all.home_path }}/.bashrc' line='set -o vi'
+
+- name: rewrite .bashrc for alias ll
+  lineinfile: dest='{{ all.home_path }}/.bashrc' line="alias ll='ls -ltra'"
+
+

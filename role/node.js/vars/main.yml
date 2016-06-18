@@ -1,0 +1,4 @@
+node:
+  nodebrew_url: http://git.io/nodebrew
+  install_version: stable
+  nodebrew_path: '.nodebrew/current/bin'
