@@ -15,7 +15,7 @@
 - name: install node.js ver{{ node.install_version }}
   shell: nodebrew install-binary {{ node.install_version }}
   ignore_errors: yes
-  enbironment:
+  environment:
     PATH: '{{ all.home_path }}/{{ node.nodebrew_path }}:{{ ansible_env.PATH }}'
 
 - name: use node.js

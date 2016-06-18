@@ -7,23 +7,29 @@
 
 - name: update apt
   command: apt-get update
+  sudo: yes
   when: result|failed
 
 - name: Install setuptools
-  command: apt-get install python-dev python-setuptools -y
+  command: apt-get install python-dev python-setuptools python3-pip -y
+  sudo: yes
   when: result|failed
 
 - name: Install pip
   easy_install: name=pip
+  sudo: yes
 
 - name: Install python-apt
   pip: name=python-apt
+  sudo: yes
 
 - name: install git package from apt
   apt: pkg=git force=yes
+  sudo: yes
 
 - name: Install python-pycurl
   apt: name=python-pycurl
+  sudo: yes
 
 - name: add source
   apt_repository:

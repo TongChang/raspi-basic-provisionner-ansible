@@ -2,11 +2,11 @@
   command: raspi-config --expand-rootfs
   sudo: yes
 
-- name: reboot
-  command: reboot
+- name: reboot after expand filesystem
+  shell: /sbin/reboot
   sudo: yes
   async: 5
-  pool: 0
+  poll: 0
 
 - name: wait for SSH port down
   local_action: wait_for host={{ inventory_hostname }} port=22 state=stopped
@@ -31,11 +31,11 @@
   command: rpi-update
   sudo: yes
 
-- name: reboot
-  command: reboot
+- name: reboot after rpi-update
+  shell: /sbin/reboot
   sudo: yes
   async: 5
-  pool: 0
+  poll: 0
 
 - name: wait for SSH port down
   local_action: wait_for host={{ inventory_hostname }} port=22 state=stopped
