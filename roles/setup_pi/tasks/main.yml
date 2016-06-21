@@ -20,8 +20,9 @@
   sudo: yes
 
 - name: apt-get dist-upgrade
-  command: upgrade=dist
+  apt: upgrade=dist force=yes
   sudo: yes
+  ignore_errors: true
 
 - name: install rpi-update
   apt: name=rpi-update force=yes

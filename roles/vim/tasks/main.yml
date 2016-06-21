@@ -4,7 +4,9 @@
 
 - name: clone vimrc
   command: git clone {{ dotfiles_repository_url }}
+  ignore_errors: True
 
 - name: make symlink to vimrc
   file: src='~/dotfiles/vim/_vimrc' dest='~/.vimrc' state='link'
+  ignore_errors: True
 

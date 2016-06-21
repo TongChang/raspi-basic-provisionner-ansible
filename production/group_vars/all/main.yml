@@ -1,4 +1,0 @@
-all:
-  home_path: /home/{{ ssh_user_id }}
-  tmp_path: /var/tmp
-

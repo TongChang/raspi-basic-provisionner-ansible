@@ -1,0 +1,6 @@
+[pies]
+XXX.XXX.XXX.XXX ansible_ssh_user=hoge
+
+[pies:vars]
+home_path=/home/{{ ansible_ssh_user }}
+tmp_path=/var/tmp

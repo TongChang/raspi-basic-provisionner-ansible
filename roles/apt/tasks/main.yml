@@ -1,7 +1,7 @@
 # [#20 RaspberryPiを仕事で使うためにAnsibleを使う話 | tech.kayac.com - KAYAC engineers' blog](http://tech.kayac.com/archive/20_raspberrypiansible.html)
 
 - name: install git package from apt
-  apt: update_cache=yes
+  apt: name=git force=yes
   ignore_errors: True
   register: result
 
@@ -10,28 +10,18 @@
   sudo: yes
   when: result|failed
 
-- name: Install setuptools
-  command: apt-get install python-dev python-setuptools python3-pip -y
+- name: install python-apt
+  command: apt-get install -y python-apt
   sudo: yes
   when: result|failed
-
-- name: Install pip
-  easy_install: name=pip
-  sudo: yes
-
-- name: Install python-apt
-  pip: name=python-apt
-  sudo: yes
 
 - name: install git package from apt
   apt: pkg=git force=yes
   sudo: yes
+  when: result|failed
 
 - name: Install python-pycurl
   apt: name=python-pycurl
   sudo: yes
+  when: result|failed
 
-- name: add source
-  apt_repository:
-    repo='deb-src http://mirrordirector.raspbian.org/raspbian/ wheezy main contrib non-free rpi'
-    state=present
