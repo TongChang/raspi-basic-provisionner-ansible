@@ -1,0 +1,14 @@
+- name: install git of apt
+  apt: name=git force=yes
+  sudo: yes
+
+- name: git name setting
+  command: git config --global user.name '{{ git.name }}'
+
+- name: git email setting
+  command: git config --global user.email {{ git.email }}
+
+- name: install tig
+  apt: name=tig force=yes
+  sudo: yes
+

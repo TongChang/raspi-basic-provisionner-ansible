@@ -1,0 +1,25 @@
+- name: install perl of apt
+  command: apt-get -y install perl
+  sudo: yes
+
+- name: do download nodebrew
+  get_url: url='{{ node.nodebrew_url }}'
+           dest='{{ tmp_path }}/nodebrew'
+
+- name: do install nodebrew
+  command: perl {{ tmp_path }}/nodebrew setup
+
+- name: rewrite .bashrc for export path
+  lineinfile: dest='{{ home_path }}/.bashrc' line='export PATH=${PATH}:{{ home_path }}/{{ node.nodebrew_path }}'
+
+- name: install node.js ver{{ node.install_version }}
+  shell: nodebrew install-binary {{ node.install_version }}
+  ignore_errors: yes
+  environment:
+    PATH: '{{ home_path }}/{{ node.nodebrew_path }}:{{ ansible_env.PATH }}'
+
+- name: use node.js
+  shell: nodebrew use {{ node.install_version }}
+  environment:
+    PATH: '{{ home_path }}/{{ node.nodebrew_path }}:{{ ansible_env.PATH }}'
+

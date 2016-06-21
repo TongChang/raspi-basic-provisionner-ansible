@@ -1,0 +1,27 @@
+# [#20 RaspberryPiを仕事で使うためにAnsibleを使う話 | tech.kayac.com - KAYAC engineers' blog](http://tech.kayac.com/archive/20_raspberrypiansible.html)
+
+- name: install git package from apt
+  apt: name=git force=yes
+  ignore_errors: True
+  register: result
+
+- name: update apt
+  command: apt-get update
+  sudo: yes
+  when: result|failed
+
+- name: install python-apt
+  command: apt-get install -y python-apt
+  sudo: yes
+  when: result|failed
+
+- name: install git package from apt
+  apt: pkg=git force=yes
+  sudo: yes
+  when: result|failed
+
+- name: Install python-pycurl
+  apt: name=python-pycurl
+  sudo: yes
+  when: result|failed
+
